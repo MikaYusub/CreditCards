@@ -2,56 +2,29 @@
 
 namespace CreditCard
 {
-    public interface ICommonCreditCard
-    {
-        void CashIn(double value);
-        void CashOut(double value);
-    }
-    public interface IPremiumCreditCard : ICommonCreditCard 
-    {
-        void GainBonus(ICommonCreditCard operation);
-    }
-    public interface IPlatinumCreditCard : IPremiumCreditCard
-    {
-        void GainMiles(ICommonCreditCard operation);
-    }
 
-
-
-    public class CardProperties : ICommonCreditCard 
+    public class PremiumCardProperties : CommonCardProperties, IPremiumCreditCard
     {
-        public double Balance = 0;
-        public double Commision;
+        public void CommisionTurnOff() => Commision = 0;
 
-        public void CashOut(double value)
+        public void CommisionTurnOn() => Commision = 0.02;
+
+        public void GainBonus(ICommonCreditCard operation)
         {
-            if (Balance >= value)
-            {
-                Balance -= value + (value * Commision);
-            }
-            else
-            {
-                throw new Exception("Недостаточно средств");
-            }
-        }
-        
-        public void CashIn(double value)
-        {
-            Balance += value - value * Commision;
-        }
-        public double GetBalance() 
-        {
-            return Balance;
+            throw new NotImplementedException();
         }
     }
-
-    public class CommonCard : CardProperties
+    public class CommonCard : CommonCardProperties
     {
         public CommonCard() => Commision = 0.03;
     }
-    class PremiumCard : CardProperties
+    public class PremiumCard : PremiumCardProperties
     {
         public PremiumCard() => Commision = 0.02;
+    }
+    public class PlatinumCard : CommonCardProperties 
+    {
+        public PlatinumCard() => Commision = 0.01;
     }
 
     class Program
