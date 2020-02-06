@@ -5,8 +5,8 @@ namespace CreditCard
     public class CommonCardProperties : ICommonCreditCard
     {
         public double balance = 0;
-        public double bonusBalance = 0;
-        public double miles = 0;
+        public static int bonusBalance = 0;
+        public static int miles = 0;
         public double commision;
         private bool isMethodsCalled = false;
 
@@ -16,6 +16,7 @@ namespace CreditCard
             {
                 balance -= value + (value * commision);
                 isMethodsCalled = true;
+
             }
             else
             {
