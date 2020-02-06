@@ -2,7 +2,7 @@
 {
     public interface IPremiumCreditCard : ICommonCreditCard
     {
-        void GainBonus(ICommonCreditCard operation);
+        void GainBonus();
         void CommisionTurnOn();
         void CommisionTurnOff();
 

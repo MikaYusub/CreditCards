@@ -2,6 +2,6 @@
 {
     public interface IPlatinumCreditCard : IPremiumCreditCard
     {
-        void GainMiles(ICommonCreditCard operation);
+        void GainMiles();
     }
 }

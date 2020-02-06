@@ -4,14 +4,18 @@ namespace CreditCard
 {
     public class CommonCardProperties : ICommonCreditCard
     {
-        public double Balance = 0;
-        public double Commision;
+        public double balance = 0;
+        public double bonusBalance = 0;
+        public double miles = 0;
+        public double commision;
+        private bool isMethodsCalled = false;
 
         public void CashOut(double value)
         {
-            if (Balance >= value)
+            if (balance >= value)
             {
-                Balance -= value + (value * Commision);
+                balance -= value + (value * commision);
+                isMethodsCalled = true;
             }
             else
             {
@@ -21,11 +25,10 @@ namespace CreditCard
 
         public void CashIn(double value)
         {
-            Balance += value - value * Commision;
+            balance += value - value * commision;
+            isMethodsCalled = true;
         }
-        public double GetBalance()
-        {
-            return Balance;
-        }
+        public double GetBalance() => balance;
+        public bool GetIsMethodsCalled() => isMethodsCalled;
     }
 }
